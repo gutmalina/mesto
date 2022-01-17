@@ -14,7 +14,6 @@
 @import url(../bloks/profile/__info/profile__info.css);
 @import url(../bloks/profile/__info-title/profile__info-title.css);
 @import url(../bloks/profile/__info-subtitle/profile__info-subtitle.css);
-@import url(../bloks/profile/__info/_text/profile__info_text_style.css);
 @import url(../bloks/profile/__edit/profile__edit.css);
 @import url(../bloks/profile/__add/profile__add.css);
 @import url(../bloks/group-cards/group-cards.css);
@@ -34,5 +33,5 @@
 @import url(../bloks/popup/__title/popup__title.css);
 @import url(../bloks/popup/__contact/popup__contact.css);
 @import url(../bloks/popup/__input/popup__input.css);
-@import url(../bloks/popup/__input/_text/popup__input_text_style.css);
+@import url(../bloks/popup/__paragraf/_text/popup__paragraf_text_style.css);
 @import url(../bloks/popup/__save/popup__save.css);

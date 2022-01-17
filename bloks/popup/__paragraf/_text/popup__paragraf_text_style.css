@@ -1,4 +1,4 @@
-.popup__input_text_style {
+.popup__paragraf_text_style {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 13px;
   font-family: Inter;
@@ -7,6 +7,6 @@
   line-height: 17px;
   margin: 0 0 30px 0;
 }
-.popup__input_text_style:last-of-type {
+.popup__paragraf_text_style:last-of-type {
   margin-bottom: 0;
 }

@@ -5,6 +5,10 @@
   font-size: 18px;
   line-height: 122%;
   grid-row: 2;
+  color: #ffffff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 @media screen and (max-width: 767px) {
   .profile__info-subtitle {
@@ -15,5 +19,6 @@
   .profile__info-subtitle {
     font-size: 14px;
     max-width: 100%;
+    text-align: center;
   }
 }
