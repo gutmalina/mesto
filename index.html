@@ -1,0 +1,97 @@
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./pages/index.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Сервис "Mesto"</title>
+    </head>
+    <body class="body">
+      <div class="page page_indent">
+        <header class="header header_indent">
+          <img class="header__logo" src="./images/header-logo.svg" alt="Логотип сервиса Mesto Russian">
+        </header>
+        <main class="content content_indent">
+          <section class="profile profile_indent">
+            <img class="profile__avatar" src="./images/avatar.jpg" alt="Фотография профиля">
+            <section class="profile__info ">
+              <h1 class="profile__info-title profile__info_text_style">Жак-Ив Кусто</h1>
+              <p class="profile__info-subtitle profile__info_text_style">Исследователь океана</p>
+              <button class="profile__edit">
+                <img src="./images/Vector-edit.svg" alt="Редактировать">
+              </button>
+            </section>
+            <button class="profile__add">
+              <img src="./images/Vector-add.svg" alt="Добавить">
+            </button>
+          </section>
+          <section class="group-cards group-cards_indent">
+            <div class="card">
+              <img class="card__img" src="./images/мо.jpg" alt="Озеро в Лесу">
+              <article class="card__caption">
+                <h2 class="card__text">Московская область</h2>
+                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
+              </article>
+            </div>
+            <div class="card">
+              <img class="card__img" src="./images/мысОстрый.jpg" alt="Мыс Острый Сахалинская область">
+              <article class="card__caption">
+                <h2 class="card__text">Мыс Острый</h2>
+                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
+              </article>
+            </div>
+            <div class="card">
+              <img class="card__img" src="./images/СудакКрым.jpg" alt="Судак Крым берег Черного моря">
+              <article class="card__caption">
+                <h2 class="card__text">Судак Черное море</h2>
+                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
+              </article>
+            </div>
+            <div class="card">
+              <img class="card__img" src="./images/Куршскаякоса.jpg" alt="берег Балтийского моря">
+              <article class="card__caption">
+                <h2 class="card__text">Куршская коса</h2>
+                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
+              </article>
+            </div>
+            <div class="card">
+              <img class="card__img" src="./images/Владивосток.jpg" alt="Владивосток Скалы в бирюзовой лагуне">
+              <article class="card__caption">
+                <h2 class="card__text">Владивосток</h2>
+                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
+              </article>
+            </div>
+            <div class="card">
+              <img class="card__img" src="./images/Самара.jpg" alt="Самара река Волга">
+              <article class="card__caption">
+                <h2 class="card__text">Самара</h2>
+                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
+              </article>
+            </div>
+          </section>
+        </main>
+        <footer class="footer footer_indent">
+          <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+        </footer>
+        <div class="popup">
+          <button class="popup__close">
+            <img src="./images/CloseIcon.svg" alt="Закрыть">
+          </button>
+          <div class="popup__container">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="form">
+              <fieldset class="popup__contact">
+                <p class="popup__paragraf popup__input_text_style">
+                  <input type="text" name="name" placeholder="Имя" value="Жак-Ив Кусто" class="popup__input popup__input_name"></p>
+                <p class="popup__paragraf popup__input_text_style">
+                  <input type="text" name="job" placeholder="О себе" value="Исследователь океана" class="popup__input popup__input_job"></p>
+              </fieldset>
+            </form>
+            <button class="popup__save">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    <script src="./scripts/index.js"></script>
+    </body>
+    </html>

@@ -1,0 +1,17 @@
+.popup__save {
+  background: #000000;
+  border-radius: 2px;
+  border: none;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  height: 50px;
+  padding: 0;
+  cursor: pointer;
+}
+.popup__save:hover {
+  opacity: 0.8;
+}
