@@ -1,48 +1,35 @@
-// Открыть.закрыть popup/
 
-const profileOpenPopupButton = document.querySelector('.profile__edit')
-const popup = document.querySelector('.popup')
-const popupCloseButton = document.querySelector('.popup__close')
+const profileOpenPopupButton = document.querySelector('.profile__edit') //переменна кнопки Редактировать
+const popup = document.querySelector('.popup') //переменная формы Попап
+const popupCloseButton = document.querySelector('.popup__close') //переменная кнопки Закрыть
 
 function openPopup() {
-  popup.classList.add('popup_opened')
+  popup.classList.add('popup_opened') // функция ОТКРЫТЬ ПОПАП
+  NameInput.value = NameProfile.innerText//вставить текст в имя попап
+  JobInput.value = JobProfile.innerText//вставить текст в работа попап
 }
 function closePopup() {
-  popup.classList.remove('popup_opened')
+  popup.classList.remove('popup_opened') // функция ЗАКРЫТЬ ПОПАП
 }
 
-profileOpenPopupButton.addEventListener('click', openPopup,)
-popupCloseButton.addEventListener('click', closePopup)
+profileOpenPopupButton.addEventListener('click', openPopup,) //клик по кнопке Редактировать
+popupCloseButton.addEventListener('click', closePopup) //клик по кнопке Закрыть
+
+const popupSaveButton = document.querySelector('.popup__save')//перменная кнопки Сохранить
+let NameInput = popup.querySelector('.popup__input_name') // переменна Имя в форме Попап
+let JobInput = popup.querySelector('.popup__input_job') // переменна работа в форме Попап
+
+let NameProfile = document.querySelector('.profile__info-title') //переменная Текст имени
+let JobProfile = document.querySelector('.profile__info-subtitle') // переменная Текст работа
+
+NameInput.getAttribute('value')//получить значение имени из формы попап
+JobInput.getAttribute('value')//получить значение работа из формы попап
 
 
-// Находим форму в DOM
-let formElement = document.querySelector('.form') // Воспользуйтесь методом querySelector()
-// Находим поля формы в DOM
-let nameInput = formElement.querySelector('.popup__input_name')// Воспользуйтесь инструментом .querySelector()
-let jobInput = formElement.querySelector('.popup__input_job')// Воспользуйтесь инструментом .querySelector()
-let Profil = document.querySelector('.profile__info')
-let profilName = Profil.querySelector('.profile__info-title')
-let profilJob = Profil.querySelector('.profile__info-subtitle')
-
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.// Так мы можем определить свою логику отправки.// О том, как это делать, расскажем позже.
-    profilName.textContent = nameInput.getAttribute('value')
-    profilJob.textContent = jobInput.getAttribute('value')
+function savePopup () {//функция изменения текста в профиле и закрыть попап
+  NameProfile.textContent = NameInput.value;//вставить значения из попап в текст профиля
+  JobProfile.textContent = JobInput.value;//вставить значения из попап в текст профиля
+  popup.classList.remove('popup_opened') // функция ЗАКРЫТЬ ПОПАП  
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
-
-
-// сохранение данных при клике на кнопку сохранить
-const popupSaveButton = document.querySelector('.popup__save')
-
-function savePopup() {
-  profilName.textContent = nameInput.getAttribute('value')
-  profilJob.textContent = jobInput.getAttribute('value')
-}
-
-popupSaveButton.addEventListener('click', savePopup)
+ popupSaveButton.addEventListener('click', savePopup)//клик по кнопке Сохранить - закроет форму попап и сохранит текст в профиль
