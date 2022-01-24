@@ -8,87 +8,79 @@
         <title>Сервис "Mesto"</title>
     </head>
     <body class="body">
-      <div class="page page_indent">
-        <header class="header header_indent">
+      <div class="page indent">
+        <header class="header indent__header">
           <img class="header__logo" src="./images/header-logo.svg" alt="Логотип сервиса Mesto Russian">
         </header>
-        <main class="content content_indent">
+        <main class="content indent__content">
           <section class="profile profile_indent">
             <img class="profile__avatar" src="./images/avatar.jpg" alt="Фотография профиля">
-            <section class="profile__info">
+            <div class="profile__info">
               <h1 class="profile__info-title">Жак-Ив Кусто</h1>
               <p class="profile__info-subtitle">Исследователь океана</p>
-              <button class="profile__edit">
-                <img src="./images/Vector-edit.svg" alt="Редактировать">
-              </button>
-            </section>
-            <button class="profile__add">
-              <img src="./images/Vector-add.svg" alt="Добавить">
-            </button>
+              <button type="button" class="button button_type_edit-profil" aria-label="Редактировать"></button>
+            </div>
+            <button class="button button_type_add-profile" aria-label="Добавить"></button>
           </section>
           <section class="group-cards group-cards_indent">
-            <div class="card">
-              <img class="card__img" src="./images/мо.jpg" alt="Озеро в Лесу">
-              <article class="card__caption">
+            <article class="card">
+              <img class="card__img" src="./images/MO.jpg" alt="Озеро в Лесу">
+              <div class="card__caption">
                 <h2 class="card__text">Московская область</h2>
-                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
-              </article>
-            </div>
-            <div class="card">
-              <img class="card__img" src="./images/мысОстрый.jpg" alt="Мыс Острый Сахалинская область">
-              <article class="card__caption">
+                <button type="button" class="button button_type_like-card button_type_like-active" aria-label="Поставить лайк" ></button>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card__img" src="./images/mysOstryj.jpg" alt="Мыс Острый Сахалинская область">
+              <div class="card__caption">
                 <h2 class="card__text">Мыс Острый</h2>
-                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
-              </article>
-            </div>
-            <div class="card">
-              <img class="card__img" src="./images/СудакКрым.jpg" alt="Судак Крым берег Черного моря">
-              <article class="card__caption">
+                <button type="button" class="button button_type_like-card card__like card__like card__like_active_black" aria-label="Поставить лайк" ></button>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card__img" src="./images/SudakKrym.jpg" alt="Судак Крым берег Черного моря">
+              <div class="card__caption">
                 <h2 class="card__text">Судак Черное море</h2>
-                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
-              </article>
-            </div>
-            <div class="card">
-              <img class="card__img" src="./images/Куршскаякоса.jpg" alt="берег Балтийского моря">
-              <article class="card__caption">
+                <button type="button" class="button button_type_like-card card__like card__like_active_black" aria-label="Поставить лайк" ></button>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card__img" src="./images/KurshskayKosa.jpg" alt="берег Балтийского моря">
+              <div class="card__caption">
                 <h2 class="card__text">Куршская коса</h2>
-                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
-              </article>
-            </div>
-            <div class="card">
-              <img class="card__img" src="./images/Владивосток.jpg" alt="Владивосток Скалы в бирюзовой лагуне">
-              <article class="card__caption">
+                <button type="button" class="button button_type_like-card card__like card__like_active_black" aria-label="Поставить лайк" ></button>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card__img" src="./images/Vladivostok.jpg" alt="Владивосток Скалы в бирюзовой лагуне">
+              <div class="card__caption">
                 <h2 class="card__text">Владивосток</h2>
-                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
-              </article>
-            </div>
-            <div class="card">
-              <img class="card__img" src="./images/Самара.jpg" alt="Самара река Волга">
-              <article class="card__caption">
+                <button type="button" class="button button_type_like-card card__like card__like_active_black" aria-label="Поставить лайк" ></button>
+              </div>
+            </article>
+            <article class="card">
+              <img class="card__img" src="./images/Samara.jpg" alt="Самара река Волга">
+              <div class="card__caption">
                 <h2 class="card__text">Самара</h2>
-                <img class="card__like" src="./images/like.svg" alt="Лайкнуть">
-              </article>
-            </div>
+                <button type="button" class="button button_type_like-card card__like card__like_active_black" aria-label="Поставить лайк" ></button>
+              </div>
+            </article>
           </section>
         </main>
-        <footer class="footer footer_indent">
+        <footer class="footer indent__footer">
           <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
         <div class="popup">
-          <button class="popup__close">
-            <img src="./images/CloseIcon.svg" alt="Закрыть">
-          </button>
+          <button type="button" class="button button_type_close-popup" aria-label="Закрыть"></button>
           <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="form">
+            <form name="edit-form" class="form">
               <fieldset class="popup__contact">
-                <p class="popup__paragraf popup__paragraf_text_style">
-                  <input type="text" name="name" placeholder="Имя" class="popup__input popup__input_name"></p>
-                <p class="popup__paragraf popup__paragraf_text_style">
-                  <input type="text" name="job" placeholder="О себе" class="popup__input popup__input_job"></p>
+                <input type="text" name="name" required placeholder="Имя" class="popup__input popup__input_edit_name" autofocus>
+                <input type="text" name="job" required placeholder="О себе" class="popup__input popup__input_edit_job">
               </fieldset>
+              <button type="submit" class="button button_type_save-popup">Сохранить</button>
             </form>
-            <button class="popup__save">Сохранить</button>
           </div>
         </div>
       </div>

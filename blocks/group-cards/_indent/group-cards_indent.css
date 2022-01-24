@@ -1,0 +1,14 @@
+.group-cards_indent {
+  margin-bottom: 66px;
+}
+@media screen and (max-width: 1279px) {
+  .group-cards_indent {
+    margin-bottom: 64px;
+  }
+}
+@media screen and (max-width: 463px) {
+  .group-cards_indent {
+    margin-bottom: 50px;
+  }
+}
+
