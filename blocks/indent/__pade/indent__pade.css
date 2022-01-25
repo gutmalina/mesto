@@ -1,19 +1,19 @@
-.indent {
+.indent__pade {
   margin: 0 auto;
   padding-top: 45px;
 }
 @media screen and (max-width: 1023px) {
-  .indent {
+  .indent__pade {
     padding-top: 40px;
   }
 }
 @media screen and (max-width: 767px) {
-  .indent {
+  .indent__pade {
     padding-top: 35px;
   }
 }
 @media screen and (max-width: 424px) {
-  .indent {
+  .indent__pade {
     padding-top: 28px;
   }
 }

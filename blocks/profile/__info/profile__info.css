@@ -3,12 +3,13 @@
   grid-template-columns: repeat(2, auto);
   max-width: 336px;
   align-self: center;
-  gap: 10px 25px;
+  gap: 10px 15px;
 }
 @media screen and (max-width: 767px) {
   .profile__info {
     align-items: center;
-    gap: 8px 10px;
+    gap: 8px 11px;
     margin-bottom: 31px;
+    margin-left: 25px;
   }
 }
