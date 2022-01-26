@@ -1,4 +1,4 @@
-.button_type_edit-profil {
+.button_type_edit-profile {
   background-image: url(../../../images/Vector-edit.svg);
   background-size: 10px;
   background-repeat: no-repeat;
@@ -13,11 +13,11 @@
   margin-top: 19px;
   transition: opacity 0.5s ease-in-out;
 }
-.button_type_edit-profil:hover {
+.button_type_edit-profile:hover {
   opacity: 0.6;
 }
 @media screen and (max-width: 767px) {
-  .button_type_edit-profil {
+  .button_type_edit-profile {
     background-size: 8.5px;
     min-width: 20px;
     min-height: 20px;
@@ -25,7 +25,7 @@
   }
 }
 @media screen and (max-width: 424px) {
-  .button_type_edit-profil {
+  .button_type_edit-profile {
     background-size: 7.5px;
     min-width: 18px;
     min-height: 18px;
