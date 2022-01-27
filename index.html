@@ -89,6 +89,19 @@
             </form>
           </div>
         </div>
+        <div class="popup popup__foto">
+          <button type="button" class="button button_type_close-popup" aria-label="Закрыть"></button>
+          <div class="popup__container">
+            <h2 class="popup__title">Новое место</h2>
+            <form name="foto-form" class="form">
+              <fieldset class="popup__contact">
+                <input type="text" name="name" required placeholder="Название" class="popup__input popup__input_foto_name" autofocus>
+                <input type="text" name="link" required placeholder="Ссылка на картинку" class="popup__input popup__input_foto_link">
+              </fieldset>
+              <button type="submit" class="button button_type_save-popup">Создать</button>
+            </form>
+          </div>
+        </div>
       </div>
     <script src="./scripts/index.js"></script>
     </body>
