@@ -14,6 +14,7 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__info-title/profile__info-title.css);
 @import url(../blocks/profile/__info-subtitle/profile__info-subtitle.css);
+@import url(../blocks/button/button.css);
 @import url(../blocks/button/_type/button_type_edit-profile.css);
 @import url(../blocks/button/_type/button_type_add-profile.css);
 @import url(../blocks/group-cards/group-cards.css);
@@ -24,6 +25,7 @@
 @import url(../blocks/card/__text/card__text.css);
 @import url(../blocks/button/_type/button_type_like-card.css);
 @import url(../blocks/button/_active/button_active-like.css);
+@import url(../blocks/button/_type/button_type_delete-card.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/indent/__footer/indent__footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);

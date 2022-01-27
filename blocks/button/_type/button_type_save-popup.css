@@ -10,10 +10,7 @@
   color: #FFFFFF;
   min-height: 50px;
   min-width: 100%;
-  padding: 0;
-  cursor: pointer;
   margin-top: 48px;
-  transition: opacity 0.5s ease-in-out;
 }
 .button_type_save-popup:hover {
   opacity: 0.8;

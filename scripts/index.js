@@ -1,5 +1,5 @@
 
-const profileOpenPopupButton = document.querySelector('.button_type_edit-profil') //переменна кнопки Редактировать
+const profileOpenPopupButton = document.querySelector('.button_type_edit-profile') //переменна кнопки Редактировать
 const popup = document.querySelector('.popup') //переменная формы Попап
 const popupCloseButton = document.querySelector('.button_type_close-popup') //переменная кнопки Закрыть
 
