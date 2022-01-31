@@ -30,7 +30,7 @@
 @import url(../blocks/indent/__footer/indent__footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/button/__close/button__close.css);
+@import url(../blocks/button/_style/button_style_close.css);
 @import url(../blocks/popup/_theme/popup_theme_light.css);
 @import url(../blocks/popup/_theme/popup_theme_dark.css);
 @import url(../blocks/popup/__opened/popup__opened.css);
@@ -38,7 +38,7 @@
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__contact/popup__contact.css);
 @import url(../blocks/popup/__input/popup__input.css);
-@import url(../blocks/button/__save/button__save.css);
+@import url(../blocks/button/_style/button_style_save.css);
 @import url(../blocks/popup/__image-container/popup__image-container.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__image-caption/popup__image-caption.css);

@@ -72,7 +72,7 @@ profileOpenPopupButton.addEventListener('click', openPopupProfile,);
 popupProfileCloseButton.addEventListener('click', closePopupProfile);
 
 
-let formElement = document.querySelector('.form__profile');
+let formElement = document.querySelector('.form-profile');
 let NameInput = formElement.querySelector('.popup__input_edit_name');
 let JobInput = formElement.querySelector('.popup__input_edit_job');
 const popupSaveButton = formElement.querySelector('.button_type_save-profile');
@@ -97,7 +97,7 @@ const popupMesto = document.querySelector('.popup_type_mesto');
 const popupMestoOpenButton = document.querySelector('.button_type_add-profile');
 const popupMestoCloseButton = document.querySelector('.button_type_close-mesto');
 
-let formElementMesto = document.querySelector('.form__mesto');
+let formElementMesto = document.querySelector('.form-mesto');
 let nameInputMesto = formElementMesto.querySelector('.popup__input_foto_name');
 let linkInputMesto = formElementMesto.querySelector('.popup__input_foto_link');
 
