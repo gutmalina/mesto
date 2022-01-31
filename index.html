@@ -23,93 +23,55 @@
             <button type="button" class="button button_type_add-profile" aria-label="Добавить"></button>
           </section>
           <section class="group-cards indent__group-cards">
-            <article class="card">
-              <img class="card__img" src="./images/MO.jpg" alt="Озеро в Лесу">
-              <div class="card__caption">
-                <h2 class="card__text">Московская область</h2>
-                <button type="button" class="button button_type_like-card" aria-label="Поставить лайк"></button>
-              </div>
-              <button type="button" class="button button_type_delete-card" aria-label="Удалить фотографию"></button>
-            </article>
-            <article class="card">
-              <img class="card__img" src="./images/mysOstryj.jpg" alt="Мыс Острый Сахалинская область">
-              <div class="card__caption">
-                <h2 class="card__text">Мыс Острый</h2>
-                <button type="button" class="button button_type_like-card" aria-label="Поставить лайк" ></button>
-              </div>
-              <button type="button" class="button button_type_delete-card" aria-label="Удалить фотографию"></button>
-            </article>
-            <article class="card">
-              <img class="card__img" src="./images/SudakKrym.jpg" alt="Судак Крым берег Черного моря">
-              <div class="card__caption">
-                <h2 class="card__text">Судак Черное море</h2>
-                <button type="button" class="button button_type_like-card" aria-label="Поставить лайк" ></button>
-              </div>
-              <button type="button" class="button button_type_delete-card" aria-label="Удалить фотографию"></button>
-            </article>
-            <article class="card">
-              <img class="card__img" src="./images/KurshskayKosa.jpg" alt="берег Балтийского моря">
-              <div class="card__caption">
-                <h2 class="card__text">Куршская коса</h2>
-                <button type="button" class="button button_type_like-card" aria-label="Поставить лайк" ></button>
-              </div>
-              <button type="button" class="button button_type_delete-card" aria-label="Удалить фотографию"></button>
-            </article>
-            <article class="card">
-              <img class="card__img" src="./images/Vladivostok.jpg" alt="Владивосток Скалы в бирюзовой лагуне">
-              <div class="card__caption">
-                <h2 class="card__text">Владивосток</h2>
-                <button type="button" class="button button_type_like-card" aria-label="Поставить лайк" ></button>
-              </div>
-              <button type="button" class="button button_type_delete-card" aria-label="Удалить фотографию"></button>
-            </article>
-            <article class="card">
-              <img class="card__img" src="./images/Samara.jpg" alt="Самара река Волга">
-              <div class="card__caption">
-                <h2 class="card__text">Самара</h2>
-                <button type="button" class="button button_type_like-card" aria-label="Поставить лайк" ></button>
-              </div>
-              <button type="button" class="button button_type_delete-card" aria-label="Удалить фотографию"></button>
-            </article>
           </section>
         </main>
         <footer class="footer indent__footer">
           <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
-        <div class="popup popup_style_light">
-          <button type="button" class="button button_type_close-popup" aria-label="Закрыть"></button>
+        <div class="popup popup_type_profile popup_theme_light">
+          <button type="button" class="button button__close button_type_close-profile" aria-label="Закрыть"></button>
           <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="edit-form" class="form">
+            <form name="edit-form" class="form form__profile">
               <fieldset class="popup__contact">
                 <input type="text" name="name" required placeholder="Имя" class="popup__input popup__input_edit_name" autofocus>
                 <input type="text" name="job" required placeholder="О себе" class="popup__input popup__input_edit_job">
               </fieldset>
-              <button type="submit" class="button button_type_save-popup">Сохранить</button>
-            </form>
+              <button type="button" class="button button_type_save-profile button__save">Сохранить</button>
+              </form>
           </div>
         </div>
-        <div class="popup  popup_style_light popup__new-mesto">
-          <button type="button" class="button button_type_close-popup" aria-label="Закрыть"></button>
+        <div class="popup popup_type_mesto popup_theme_light">
+          <button type="button" class="button button__close button_type_close-mesto" aria-label="Закрыть"></button>
           <div class="popup__container">
             <h2 class="popup__title">Новое место</h2>
-            <form name="new-mesto-form" class="form">
+            <form name="new-mesto-form" class="form form__mesto">
               <fieldset class="popup__contact">
-                <input type="text" name="name" required placeholder="Название" class="popup__input popup__input_foto_name" autofocus>
+                <input type="text" name="name" required placeholder="Название" class="popup__input popup__input_foto_name">
                 <input type="text" name="link" required placeholder="Ссылка на картинку" class="popup__input popup__input_foto_link">
               </fieldset>
-              <button type="submit" class="button button_type_save-popup">Создать</button>
+              <button type="button" class="button button_type_save-mesto button__save">Создать</button>
             </form>
           </div>
         </div>
-        <div class="popup popup_style_dark">
-          <button type="button" class="button button_type_close-popup" aria-label="Закрыть"></button>
-          <figure class="popup__opened-foto">
-              <img src="./images/SudakKrym.jpg" class="popup__foto" alt="Судак">
-              <figcaption class="popup__foto-caption">Судак Крым</figcaption>
-          </figure>
+        <div class="popup popup_type_image popup_theme_dark">
+          <button type="button" class="button button__close button_type_close-image" aria-label="Закрыть"></button>
+          <figure class="popup__image-container">
+            <img src="." class="popup__image" alt="">
+            <figcaption class="popup__image-caption"></figcaption>
+        </figure>
         </div>
       </div>
+      <template id="card_template">
+        <article class="card">
+          <img class="card__img" src="" alt="">
+          <div class="card__caption">
+            <h2 class="card__text"></h2>
+            <button type="button" class="button button_type_like button_type_like-card" aria-label="Поставить лайк"></button>
+          </div>
+          <button type="button" class="button button_type_delete-card" aria-label="Удалить фотографию"></button>
+        </article>
+      </template>
     <script src="./scripts/index.js"></script>
     </body>
     </html>
