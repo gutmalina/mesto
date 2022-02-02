@@ -1,7 +1,28 @@
-//загрузка массива при открытии сайта
+
 
 const cardTemplate = document.querySelector('#card_template').content;
 const groupCards = document.querySelector('.group-cards');
+const popup = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup_type_profile');
+const popupProfileOpenButton = document.querySelector('.button_type_edit-profile');
+const popupProfileCloseButton = document.querySelector('.button_type_close-profile');
+const profileForm = document.querySelector('.form-profile');
+const nameInput = profileForm.querySelector('.popup__input_edit_name');
+const jobInput = profileForm.querySelector('.popup__input_edit_job');
+const popupProfileSaveButton = profileForm.querySelector('.button_type_save-profile');
+const nameProfile = document.querySelector('.profile__info-title');
+const jobProfile = document.querySelector('.profile__info-subtitle');
+const popupMesto = document.querySelector('.popup_type_mesto');
+const popupMestoOpenButton = document.querySelector('.button_type_add-profile');
+const popupMestoCloseButton = document.querySelector('.button_type_close-mesto');
+const mestoForm = document.querySelector('.form-mesto');
+const nameInputMesto = mestoForm.querySelector('.popup__input_foto_name');
+const linkInputMesto = mestoForm.querySelector('.popup__input_foto_link');
+const popupMestoSaveButton = mestoForm.querySelector('.button_type_save-mesto');
+const popupImage = document.querySelector('.popup_type_image');
+const popupImageCloseButton = document.querySelector('.button_type_close-image');
+const imgPopupImage = document.querySelector('.popup__image');
+const imgCaptionPopupImage = document.querySelector('.popup__image-caption');
 
 const initialCards = [
   {
@@ -33,124 +54,110 @@ const initialCards = [
 function render() {
   initialCards.forEach(renderInitialCards);
 }
-function renderInitialCards(element) {
+function createCard (item) {
   const newCard = cardTemplate.cloneNode(true);
-  newCard.querySelector('.card__text').innerText = element.name;
-  newCard.querySelector('.card__img').src = element.link;
+  const newCardImg = newCard.querySelector('.card__img');
+  newCard.querySelector('.card__text').innerText = item.name;
+  newCardImg.src = item.link;
+  newCardImg.alt = item.name;
   newCard.querySelector('.button_type_like').addEventListener('click', likeCard);
   newCard.querySelector('.button_type_delete-card').addEventListener('click', deleteCard);
-  newCard.querySelector('.card__img').addEventListener('click', popupOpenImage);
+  newCardImg.addEventListener('click', openPopupImage);
+  return newCard;
+}
+function renderInitialCards(element) {
+  const newCard = createCard(element)
   groupCards.appendChild(newCard);
 };
-
 render();
 
 function deleteCard(event){
   event.target.closest('.card').remove();
 }
-
 function likeCard(event) {
   event.target.classList.toggle('button_active-like');
 }
-
-
-//открыть и закрыть попап профиль, редактировать данные профиля, загрузка текста в момент открытия попап
-const profileOpenPopupButton = document.querySelector('.button_type_edit-profile');
-const popupProfile = document.querySelector('.popup_type_profile');
-const popupProfileCloseButton = document.querySelector('.button_type_close-profile');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+}
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
 
 function openPopupProfile() {
-  popupProfile.classList.add('popup__opened');
-  NameInput.value = NameProfile.innerText;
-  JobInput.value = JobProfile.innerText;
+  openPopup(popupProfile);
+  nameInput.value = nameProfile.innerText;
+  jobInput.value = jobProfile.innerText;
 }
 function closePopupProfile() {
-  popupProfile.classList.remove('popup__opened');
+  closePopup(popupProfile);
 }
-
-profileOpenPopupButton.addEventListener('click', openPopupProfile,);
+popupProfileOpenButton.addEventListener('click', openPopupProfile,);
 popupProfileCloseButton.addEventListener('click', closePopupProfile);
+popupProfileSaveButton.addEventListener('click', closePopupProfile);
 
-
-let formElement = document.querySelector('.form-profile');
-let NameInput = formElement.querySelector('.popup__input_edit_name');
-let JobInput = formElement.querySelector('.popup__input_edit_job');
-const popupSaveButton = formElement.querySelector('.button_type_save-profile');
-let NameProfile = document.querySelector('.profile__info-title');
-let JobProfile = document.querySelector('.profile__info-subtitle');
-NameInput.getAttribute('value');
-JobInput.getAttribute('value');
-popupSaveButton.addEventListener('click', formSubmitHandler);
-
-function formSubmitHandler (evt) {
+function submitFormHandler (evt) {
   evt.preventDefault();
-  NameProfile.textContent = NameInput.value;
-  JobProfile.textContent = JobInput.value;
+  nameProfile.textContent = nameInput.value;
+  jobProfile.textContent = jobInput.value;
   closePopupProfile();
 }
-
-formElement.addEventListener('submit', formSubmitHandler);
-
-
-//открыть и закрыть попап добавления новых карточек, добавить новые фото
-const popupMesto = document.querySelector('.popup_type_mesto');
-const popupMestoOpenButton = document.querySelector('.button_type_add-profile');
-const popupMestoCloseButton = document.querySelector('.button_type_close-mesto');
-
-let formElementMesto = document.querySelector('.form-mesto');
-let nameInputMesto = formElementMesto.querySelector('.popup__input_foto_name');
-let linkInputMesto = formElementMesto.querySelector('.popup__input_foto_link');
+profileForm.addEventListener('submit', submitFormHandler);
 
 function openPopupMesto () {
-  popupMesto.classList.add('popup__opened');
+  openPopup(popupMesto);
+}
+function resetInputMesto () {
+  nameInputMesto.value = '';
+  linkInputMesto.value = '';
 }
 function closePopupMesto () {
-  popupMesto.classList.remove('popup__opened');
+  closePopup(popupMesto);
+  resetInputMesto();
 }
-
+function savePopupMesto() {
+  renderNewCardMesto();
+  closePopup(popupMesto);
+  resetInputMesto();
+}
 popupMestoOpenButton.addEventListener('click', openPopupMesto);
 popupMestoCloseButton.addEventListener('click', closePopupMesto);
+popupMestoSaveButton.addEventListener('click', savePopupMesto);
 
-const popupMestoSaveButton = formElementMesto.querySelector('.button_type_save-mesto');
-
-function renderNewCardMesto (element) {
+function createCardMesto (item) {
   const newCardMesto = cardTemplate.cloneNode(true);
+  const newCardMestoImg = newCardMesto.querySelector('.card__img');
   newCardMesto.querySelector('.card__text').innerText = nameInputMesto.value;
-  newCardMesto.querySelector('.card__img').src = linkInputMesto.value;
+  newCardMestoImg.src = linkInputMesto.value;
+  newCardMestoImg.alt = nameInputMesto.value;
   newCardMesto.querySelector('.button_type_like').addEventListener('click', likeCard);
   newCardMesto.querySelector('.button_type_delete-card').addEventListener('click', deleteCard);
-  newCardMesto.querySelector('.card__img').addEventListener('click', popupOpenImage);
+  newCardMestoImg.addEventListener('click', openPopupImage);
+  return newCardMesto;
+}
+
+function renderNewCardMesto (element) {
+  const newCardMesto = createCardMesto(element);
   groupCards.prepend(newCardMesto);
 }
 
-function formSubmitHandlerMesto (event) {
+function submitFormHandlerMesto (event) {
   event.preventDefault();
   renderNewCardMesto();
   closePopupMesto();
 }
+mestoForm.addEventListener('submit', submitFormHandlerMesto);
 
-formElementMesto.addEventListener('submit', formSubmitHandlerMesto);
-popupMestoSaveButton.addEventListener('click', formSubmitHandlerMesto);
-
-//увеличить изображение карточки
-const popupImage = document.querySelector('.popup_type_image');
-const popupImageCloseButton = document.querySelector('.button_type_close-image');
-let cardImage = document.querySelector('.card__img');
-let img = document.querySelector('.popup__image');
-
-function popupOpenImage (event) {
-  popupImage.classList.add('popup__opened');
+function openPopupImage (event) {
+  openPopup(popupImage);
   const srcimg = event.target.parentNode.querySelector('.card__img').src;
-  img.src = srcimg;
+  imgPopupImage.src = srcimg;
   const textimg = event.target.parentNode.querySelector('.card__text').innerText;
-  let imgCaption = document.querySelector('.popup__image-caption');
-  imgCaption.textContent = textimg;
+  imgCaptionPopupImage.textContent = textimg;
 }
 
 function closePopupImage () {
-  popupImage.classList.remove('popup__opened');
+  closePopup(popupImage);
 }
 
 popupImageCloseButton.addEventListener('click', closePopupImage);
-cardImage.addEventListener('click', popupOpenImage);
-
