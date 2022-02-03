@@ -9,7 +9,6 @@ const popupProfileCloseButton = document.querySelector('.button_type_close-profi
 const profileForm = document.querySelector('.form-profile');
 const nameInput = profileForm.querySelector('.popup__input_edit_name');
 const jobInput = profileForm.querySelector('.popup__input_edit_job');
-const popupProfileSaveButton = profileForm.querySelector('.button_type_save-profile');
 const nameProfile = document.querySelector('.profile__info-title');
 const jobProfile = document.querySelector('.profile__info-subtitle');
 const popupMesto = document.querySelector('.popup_type_mesto');
@@ -18,7 +17,6 @@ const popupMestoCloseButton = document.querySelector('.button_type_close-mesto')
 const mestoForm = document.querySelector('.form-mesto');
 const nameInputMesto = mestoForm.querySelector('.popup__input_foto_name');
 const linkInputMesto = mestoForm.querySelector('.popup__input_foto_link');
-const popupMestoSaveButton = mestoForm.querySelector('.button_type_save-mesto');
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageCloseButton = document.querySelector('.button_type_close-image');
 const imgPopupImage = document.querySelector('.popup__image');
@@ -54,6 +52,7 @@ const initialCards = [
 function render() {
   initialCards.forEach(renderInitialCards);
 }
+
 function createCard (item) {
   const newCard = cardTemplate.cloneNode(true);
   const newCardImg = newCard.querySelector('.card__img');
@@ -94,15 +93,14 @@ function closePopupProfile() {
 }
 popupProfileOpenButton.addEventListener('click', openPopupProfile,);
 popupProfileCloseButton.addEventListener('click', closePopupProfile);
-popupProfileSaveButton.addEventListener('click', closePopupProfile);
 
-function submitFormHandler (evt) {
+function handleProfileFormSubmit (evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
   closePopupProfile();
 }
-profileForm.addEventListener('submit', submitFormHandler);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 function openPopupMesto () {
   openPopup(popupMesto);
@@ -115,45 +113,27 @@ function closePopupMesto () {
   closePopup(popupMesto);
   resetInputMesto();
 }
-function savePopupMesto() {
-  renderNewCardMesto();
-  closePopup(popupMesto);
-  resetInputMesto();
-}
+
 popupMestoOpenButton.addEventListener('click', openPopupMesto);
 popupMestoCloseButton.addEventListener('click', closePopupMesto);
-popupMestoSaveButton.addEventListener('click', savePopupMesto);
-
-function createCardMesto (item) {
-  const newCardMesto = cardTemplate.cloneNode(true);
-  const newCardMestoImg = newCardMesto.querySelector('.card__img');
-  newCardMesto.querySelector('.card__text').innerText = nameInputMesto.value;
-  newCardMestoImg.src = linkInputMesto.value;
-  newCardMestoImg.alt = nameInputMesto.value;
-  newCardMesto.querySelector('.button_type_like').addEventListener('click', likeCard);
-  newCardMesto.querySelector('.button_type_delete-card').addEventListener('click', deleteCard);
-  newCardMestoImg.addEventListener('click', openPopupImage);
-  return newCardMesto;
-}
 
 function renderNewCardMesto (element) {
-  const newCardMesto = createCardMesto(element);
+  const newCardMesto = createCard({name: nameInputMesto.value, link: linkInputMesto.value });
   groupCards.prepend(newCardMesto);
 }
 
-function submitFormHandlerMesto (event) {
+function handleMestoFormSubmit (event) {
   event.preventDefault();
   renderNewCardMesto();
   closePopupMesto();
 }
-mestoForm.addEventListener('submit', submitFormHandlerMesto);
+mestoForm.addEventListener('submit', handleMestoFormSubmit);
 
 function openPopupImage (event) {
   openPopup(popupImage);
-  const srcimg = event.target.parentNode.querySelector('.card__img').src;
-  imgPopupImage.src = srcimg;
-  const textimg = event.target.parentNode.querySelector('.card__text').innerText;
-  imgCaptionPopupImage.textContent = textimg;
+  imgPopupImage.src = event.target.src;
+  imgCaptionPopupImage.textContent = event.target.alt;
+  imgPopupImage.alt = event.target.alt;
 }
 
 function closePopupImage () {
