@@ -122,7 +122,7 @@ function renderNewCardMesto (element) {
   groupCards.prepend(newCardMesto);
 }
 
-function handleMestoFormSubmit (event) {
+function handleMestoFormSubmit (event) {//обработчик события submit
   event.preventDefault();
   renderNewCardMesto();
   closePopupMesto();
@@ -141,3 +141,44 @@ function closePopupImage () {
 }
 
 popupImageCloseButton.addEventListener('click', closePopupImage);
+
+//проверяет Valid поля input
+function checkInputValidity(form, input) {
+  const spanError = form.querySelector(`.span__error-${input.id}`);
+  if(input.validity.valid){//если не false(невалидное) то показать ошибки
+    input.classList.remove('popup__input_type_error');
+    spanError.classList.remove('span__error_active');
+    spanError.textContent = '';
+  } else {
+    input.classList.add('popup__input_type_error');//подчеркивае поле красным
+    spanError.classList.add('span__error_active');//активирует стиль ошибки
+    spanError.textContent = input.validationMessage;//показывает текст ошибки
+  };
+}
+
+function checkButtonValidity(form, button) {
+  if(form.checkValidity()){
+    button.removeAttribute('disabled', '');
+    button.classList.remove('button_style_save-invalid')
+  }else {
+    button.setAttribute('disabled', '');
+    button.classList.add('button_style_save-invalid')
+  }
+}
+
+function closePopupListener(){//закрыть попап по клику и esc
+  const popups = document.querySelectorAll('.popup');
+  popups.forEach(function(popup){
+    document.addEventListener('keydown', function(evt){
+      if (evt.key === 'Escape'){
+        closePopup(popup);};
+    });
+    popup.addEventListener('click', function(evt){
+      if (evt.target === evt.currentTarget){
+       closePopup(popup)};
+      });
+  });
+};
+closePopupListener();
+
+
