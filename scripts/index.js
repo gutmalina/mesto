@@ -144,14 +144,14 @@ popupImageCloseButton.addEventListener('click', closePopupImage);
 
 //проверяет Valid поля input
 function checkInputValidity(form, input) {
-  const spanError = form.querySelector(`.span__error-${input.id}`);
+  const spanError = form.querySelector(`.span_${input.id}`);
   if(input.validity.valid){//если не false(невалидное) то показать ошибки
     input.classList.remove('popup__input_type_error');
-    spanError.classList.remove('span__error_active');
+    spanError.classList.remove('span_active');
     spanError.textContent = '';
   } else {
     input.classList.add('popup__input_type_error');//подчеркивае поле красным
-    spanError.classList.add('span__error_active');//активирует стиль ошибки
+    spanError.classList.add('span_active');//активирует стиль ошибки
     spanError.textContent = input.validationMessage;//показывает текст ошибки
   };
 }
