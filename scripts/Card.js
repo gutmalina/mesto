@@ -1,0 +1,64 @@
+class Card{//хранит разметку карточки и наполняет его уникальным содержанием
+  constructor(link, name){
+    this._link = link;
+    this._alt = name;
+    this._name = name;
+
+  }
+
+  _getTemplate() {//функция для возврата разметки карточки
+    const cardElement = document // забираем разметку из HTML и клонируем элемент
+    .querySelector('.card_template')
+    .content
+    .querySelector('.card')
+    .cloneNode(true);
+
+    return cardElement;// вернём DOM-элемент карточки
+  }
+
+  generateCard() {//подготовит карточку к публикации. Он добавит данные в разметку
+    this._element = this._getTemplate();// Запишем разметку в приватное поле _element.Так у других элементов появится доступ к ней.
+    this._element.querySelector('.card__img').src = this._link;// Добавим данные
+    this._element.querySelector('.card__img').alt = this._name
+    this._element.querySelector('.card__text').textContent = this._name;
+    this._setEventListeners();
+
+    return this._element;// Вернём элемент наружу
+  }
+
+  _setEventListeners() {
+    this._element.querySelector('.button_type_like').addEventListener('click', () => {
+      this._likeCard();
+    });
+    this._element.querySelector('.button_type_delete-card').addEventListener('click', () => {this._deleteCard();
+    });
+    this._element.querySelector('.card__img').addEventListener('click', () => {
+      this._handleCardClick();
+    });
+  }
+
+  _likeCard(){
+    this._element.querySelector('.button_type_like').classList.toggle('button_active-like');
+  }
+
+  _deleteCard(){
+    this._element.closest('.card').remove();
+  }
+
+  _handleCardClick(){//открыть попап с увеличенной карточкой
+    openPopup(popupImage);
+    document.querySelector('.popup__image').src = this._link;
+    document.querySelector('.popup__image-caption').textContent = this._name;
+    document.querySelector('.popup__image').alt = this._name;
+  }
+};
+
+//публикация карточки на сайте с уникальными данными из массива
+initialCards.forEach((item) => {// Создадим экземпляр карточки
+  const card = new Card(item.link, item.name);// Создаём карточку и возвращаем наружу
+  const cardElement = card.generateCard();
+
+  // Добавляем в DOM
+  document.querySelector('.group-cards').append(cardElement);
+});
+

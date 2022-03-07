@@ -1,5 +1,3 @@
-const cardTemplate = document.querySelector('#card_template').content;
-const groupCards = document.querySelector('.group-cards');
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupProfileOpenButton = document.querySelector('.button_type_edit-profile');
 const profileForm = document.querySelector('.form-profile');
@@ -13,8 +11,6 @@ const mestoForm = document.querySelector('.form-mesto');
 const nameInputMesto = mestoForm.querySelector('.popup__input_foto_name');
 const linkInputMesto = mestoForm.querySelector('.popup__input_foto_link');
 const popupImage = document.querySelector('.popup_type_image');
-const imgPopupImage = document.querySelector('.popup__image');
-const imgCaptionPopupImage = document.querySelector('.popup__image-caption');
 
 const initialCards = [
   {
@@ -41,35 +37,17 @@ const initialCards = [
     name: 'Самара, река Волга',
     link: './images/Samara.jpg'
   }
-]
+  ]
 
-function render() {
-  initialCards.forEach(renderInitialCards);
+
+//публикация карточки из попап новое место
+function renderNewCardMesto (element) {
+  const card = new Card(linkInputMesto.value, nameInputMesto.value);
+  const cardElement = card.generateCard();
+
+  document.querySelector('.group-cards').prepend(cardElement);
 }
 
-function createCard (item) {
-  const newCard = cardTemplate.cloneNode(true);
-  const newCardImg = newCard.querySelector('.card__img');
-  newCard.querySelector('.card__text').innerText = item.name;
-  newCardImg.src = item.link;
-  newCardImg.alt = item.name;
-  newCard.querySelector('.button_type_like').addEventListener('click', likeCard);
-  newCard.querySelector('.button_type_delete-card').addEventListener('click', deleteCard);
-  newCardImg.addEventListener('click', () => handleCardClick(item));
-  return newCard;
-}
-function renderInitialCards(element) {
-  const newCard = createCard(element)
-  groupCards.appendChild(newCard);
-};
-render();
-
-function deleteCard(event){
-  event.target.closest('.card').remove();
-}
-function likeCard(event) {
-  event.target.classList.toggle('button_active-like');
-}
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEscape);
@@ -128,11 +106,6 @@ function closePopupMesto () {
 
 popupMestoOpenButton.addEventListener('click', openPopupMesto);
 
-function renderNewCardMesto (element) {
-  const newCardMesto = createCard({name: nameInputMesto.value, link: linkInputMesto.value });
-  groupCards.prepend(newCardMesto);
-}
-
 function handleMestoFormSubmit (event) {
   event.preventDefault();
   renderNewCardMesto();
@@ -143,10 +116,3 @@ function handleMestoFormSubmit (event) {
 }
 
 mestoForm.addEventListener('submit', handleMestoFormSubmit);
-
-function handleCardClick(item){
-   openPopup(popupImage);
-   imgPopupImage.src = item.link;
-   imgCaptionPopupImage.textContent = item.name;
-   imgPopupImage.alt = item.name;
-}
