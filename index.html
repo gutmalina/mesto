@@ -28,16 +28,16 @@
         <footer class="footer indent__footer">
           <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
         </footer>
-        <div class="popup popup_type_profile popup popup_type_profile popup_theme_light">
+        <div class="popup popup_type_profile popup_theme_light">
           <button type="button" class="button popup__close button_style_close" aria-label="Закрыть"></button>
           <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
-            <form name="edit-form" class="form form-profile" novalidate>
+            <form name="edit-form" class="form form__profile" novalidate>
               <fieldset class="popup__contact">
                 <input id="name-profile" type="text" name="name" required placeholder="Имя" class="popup__input popup__input_edit_name" minlength="2" maxlength="40" autofocus>
-                <span class="span span_name-profile"></span>
+                <div class="indent__span"><span class="span span_name-profile"></span></div>
                 <input id="job-profile" type="text" name="job" required placeholder="О себе" class="popup__input popup__input_edit_job" minlength="2" maxlength="200">
-                <span class="span span_job-profile"></span>
+                <div class="indent__span"><span class="span span_job-profile"></span></div>
               </fieldset>
               <button type="submit" class="button button-submit button_type_save-profile button_style_save">Сохранить</button>
               </form>
@@ -47,12 +47,14 @@
           <button type="button" class="button popup__close button_style_close" aria-label="Закрыть"></button>
           <div class="popup__container">
             <h2 class="popup__title">Новое место</h2>
-            <form name="new-mesto-form" class="form form-mesto" novalidate>
+            <form name="new-mesto-form" class="form form__mesto" novalidate>
               <fieldset class="popup__contact">
                 <input id="name-mesto" type="text" name="name" required placeholder="Название" class="popup__input popup__input_foto_name" minlength="2" maxlength="30">
-                <span class="span span_name-mesto"></span>
+                <div class="indent__span">
+                  <span class="span span_name-mesto"></span>
+                </div>
                 <input id="url-mesto" type="url" name="link" required placeholder="Ссылка на картинку" class="popup__input popup__input_foto_link">
-                <span class="span span_url-mesto"></span>
+                <div class="indent__span"><span class="span span_url-mesto"></span></div>
               </fieldset>
               <button type="submit" class="button button-submit button_type_save-mesto button_style_save">Создать</button>
             </form>
@@ -66,17 +68,18 @@
         </figure>
         </div>
       </div>
-      <template id="card_template" class="card_template">
+      <template id="card-template" class="card-template card-template_type_default">
         <article class="card">
           <img class="card__img" src="." alt="">
           <div class="card__caption">
             <h2 class="card__text"></h2>
-            <button type="button" class="button button_type_like button_type_like-card" aria-label="Поставить лайк"></button>
+            <button type="button" class="button button_type_like-card" aria-label="Поставить лайк"></button>
           </div>
           <button type="button" class="button button_type_delete-card" aria-label="Удалить фотографию"></button>
         </article>
       </template>
-      <script src="./scripts/index.js"></script>
+      <script type="module" src="./scripts/index.js"></script>
+      <script type="module" src="./scripts/initialCards.js"></script>
       <script type="module" src="./scripts/Card.js"></script>
       <script type="module" src="./scripts/FormValidator.js"></script>
     </body>
