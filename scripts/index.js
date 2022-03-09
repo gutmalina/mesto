@@ -4,14 +4,14 @@ import { initialCards } from './initialCards.js';
 
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupProfileOpenButton = document.querySelector('.button_type_edit-profile');
-const profileForm = document.querySelector('.form__profile');
+const profileForm = document.querySelector('.form_profile');
 const nameInput = profileForm.querySelector('.popup__input_edit_name');
 const jobInput = profileForm.querySelector('.popup__input_edit_job');
 const nameProfile = document.querySelector('.profile__info-title');
 const jobProfile = document.querySelector('.profile__info-subtitle');
 const popupMesto = document.querySelector('.popup_type_mesto');
 const popupMestoOpenButton = document.querySelector('.button_type_add-profile');
-const mestoForm = document.querySelector('.form__mesto');
+const mestoForm = document.querySelector('.form_mesto');
 const nameInputMesto = mestoForm.querySelector('.popup__input_foto_name');
 const linkInputMesto = mestoForm.querySelector('.popup__input_foto_link');
 export const popupImage = document.querySelector('.popup_type_image');
