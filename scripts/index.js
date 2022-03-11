@@ -15,7 +15,10 @@ const mestoForm = document.querySelector('.form_mesto');
 const nameInputMesto = mestoForm.querySelector('.popup__input_foto_name');
 const linkInputMesto = mestoForm.querySelector('.popup__input_foto_link');
 export const popupImage = document.querySelector('.popup_type_image');
-const forms = document.querySelectorAll('.form');
+export const imgPopupImage = document.querySelector('.popup__image');
+export const captionPopupImage = document.querySelector('.popup__image-caption');
+const groupCards = document.querySelector('.group-cards')
+
 const objectSelector = {
   formSelector: '.form',
   inputSelector: '.popup__input',
@@ -26,21 +29,20 @@ const objectSelector = {
 };
 
 function addCard (link, name){
-  const card = new Card(link, name, '.card-template_type_default');// Создаём карточку и возвращаем наружу
+  const card = new Card(link, name, '.card-template_type_default');
   const cardElement = card.generateCard();
-
-  // Добавляем в DOM
-  document.querySelector('.group-cards').prepend(cardElement);
+  groupCards.prepend(cardElement);
 };
-//публикация карточки на сайте с уникальными данными из массива
-initialCards.forEach((item) => {// Создадим экземпляр карточки
+
+initialCards.forEach((item) => {
   addCard(item.link, item.name);
 });
 
-forms.forEach((form) => {
-  const formValidator = new FormValidator(form, objectSelector);
-  formValidator.enableValidation();
-});
+const formProfileValidator = new FormValidator (profileForm, objectSelector);
+formProfileValidator.enableValidation();
+
+const formMestoValidator = new FormValidator (mestoForm, objectSelector);
+formMestoValidator.enableValidation();
 
 function renderNewCardMesto (element) {
   addCard(linkInputMesto.value, nameInputMesto.value);
@@ -58,13 +60,14 @@ function closePopup(popup) {
 
 function setClosePopupListeners(){//закрыть попап кликом по оверлей или крестик
   const popups = document.querySelectorAll('.popup')
-      popups.forEach((popup) => {
-          popup.addEventListener('mousedown', (evt) => {
-              if (evt.target.classList.contains('popup_opened')|| evt.target.classList.contains('popup__close')) {
-                  closePopup(popup);
-                };
-          });
+  popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains('popup_opened')
+          || evt.target.classList.contains('popup__close')) {
+        closePopup(popup);
+      };
     });
+  });
 };
 
 setClosePopupListeners();
@@ -80,10 +83,19 @@ function openPopupProfile() {
   openPopup(popupProfile);
   nameInput.value = nameProfile.innerText;
   jobInput.value = jobProfile.innerText;
+  removeErrorPopupOpen(popupProfile);
 };
 
-function closePopupProfile() {
-  closePopup(popupProfile);
+function removeErrorPopupOpen(popup){
+  const inputs = popup.querySelectorAll('.popup__input');
+  inputs.forEach((input) => {
+    const span = popup.querySelector(`.span_${input.id}`);
+    if(input.validity.valid){
+      input.classList.remove('popup__input_type_error');
+      span.classList.remove('span_active');
+      span.textContent = '';
+    };
+  });
 };
 
 popupProfileOpenButton.addEventListener('click', openPopupProfile,);
@@ -92,7 +104,7 @@ function handleProfileFormSubmit (evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   jobProfile.textContent = jobInput.value;
-  closePopupProfile();
+  closePopup(popupProfile);
 };
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
@@ -101,19 +113,14 @@ function openPopupMesto () {
   openPopup(popupMesto);
 };
 
-function closePopupMesto () {
-  closePopup(popupMesto);
-};
-
 popupMestoOpenButton.addEventListener('click', openPopupMesto);
 
 function handleMestoFormSubmit (event) {
   event.preventDefault();
   renderNewCardMesto();
-  closePopupMesto();
+  closePopup(popupMesto)
   event.target.reset();
-  event.submitter.setAttribute('disabled', '');
-  event.submitter.classList.add('button_style_save-invalid');
+  formMestoValidator.addButtonState();
 };
 
 mestoForm.addEventListener('submit', handleMestoFormSubmit);

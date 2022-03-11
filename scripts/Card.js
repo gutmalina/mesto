@@ -1,4 +1,4 @@
-import { openPopup, popupImage } from "./index.js";
+import { openPopup, popupImage, imgPopupImage, captionPopupImage } from "./index.js";
 
 export class Card{//хранит разметку карточки и наполняет его уникальным содержанием
   constructor(link, name, cardSelector){
@@ -47,9 +47,9 @@ export class Card{//хранит разметку карточки и напол
 
   _handleCardClick(){//открыть попап с увеличенной карточкой
     openPopup(popupImage);
-    document.querySelector('.popup__image').src = this._link;
-    document.querySelector('.popup__image-caption').textContent = this._name;
-    document.querySelector('.popup__image').alt = this._name;
+    imgPopupImage.src = this._link;
+    captionPopupImage.textContent = this._name;
+    imgPopupImage.alt = this._name;
   }
 
 }
