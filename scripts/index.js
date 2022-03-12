@@ -83,19 +83,7 @@ function openPopupProfile() {
   openPopup(popupProfile);
   nameInput.value = nameProfile.innerText;
   jobInput.value = jobProfile.innerText;
-  removeErrorPopupOpen(popupProfile);
-};
-
-function removeErrorPopupOpen(popup){
-  const inputs = popup.querySelectorAll('.popup__input');
-  inputs.forEach((input) => {
-    const span = popup.querySelector(`.span_${input.id}`);
-    if(input.validity.valid){
-      input.classList.remove('popup__input_type_error');
-      span.classList.remove('span_active');
-      span.textContent = '';
-    };
-  });
+  formProfileValidator.removeErrorPopupOpen();
 };
 
 popupProfileOpenButton.addEventListener('click', openPopupProfile,);
@@ -119,7 +107,7 @@ function handleMestoFormSubmit (event) {
   event.preventDefault();
   renderNewCardMesto();
   closePopup(popupMesto)
-  event.target.reset();
+  mestoForm.reset();
   formMestoValidator.addButtonState();
 };
 

@@ -6,6 +6,7 @@ export class FormValidator{
     this._spanErrorClass = data.spanErrorClass;
     this._buttonSubmitSelector = data.buttonSubmitSelector;
     this._buttonDisabledClass = data.buttonDisabledClass;
+    this._inputs = this._form.querySelectorAll(this._inputSelector);
   }
 
   enableValidation(){//обработка submit у определенной формы и запуск функции Валидности input + button
@@ -17,9 +18,8 @@ export class FormValidator{
   }
 
   _setEventListeners() {//проверка Валидности input и функции изменении disabled button
-    const inputs = this._form.querySelectorAll(this._inputSelector);
     this._toggleButtonState();
-    inputs.forEach((input) => {
+    this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
         this._input = input;
         this._span = this._form.querySelector(`.span_${this._input.id}`);
@@ -61,6 +61,14 @@ export class FormValidator{
   addButtonState() {
     this._button.setAttribute('disabled', '');
     this._button.classList.add(this._buttonDisabledClass);
+  }
+
+  removeErrorPopupOpen(){
+    this._inputs.forEach((input) => {
+      this._input = input;
+      this._span = this._form.querySelector(`.span_${this._input.id}`);
+      this._hideInputError(this._input, this._span);
+    });
   }
 
 };
