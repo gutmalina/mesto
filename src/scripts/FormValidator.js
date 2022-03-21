@@ -9,10 +9,7 @@ export class FormValidator{
     this._inputs = this._form.querySelectorAll(this._inputSelector);
   }
 
-  enableValidation(){//обработка submit у определенной формы и запуск функции Валидности input + button
-    function formSubmit(event) {
-        event.preventDefault(event);
-      }
+  enableValidation(){//запуск функции Валидности input + button
     this._button = this._form.querySelector(this._buttonSubmitSelector);
     this._setEventListeners();
   }
@@ -63,12 +60,19 @@ export class FormValidator{
     this._button.classList.add(this._buttonDisabledClass);
   }
 
-  removeErrorPopupOpen(){
+  removeErrorPopupOpen(){//удалить ошибки при открытии попап Профиль
     this._inputs.forEach((input) => {
       this._input = input;
       this._span = this._form.querySelector(`.span_${this._input.id}`);
-      this._hideInputError(this._input, this._span);
+      this._hideInputError();
     });
   }
 
 };
+
+//Создайте класс FormValidator, который настраивает валидацию полей формы:
+// принимает в конструктор объект настроек с селекторами и классами формы;
+// принимает вторым параметром элемент той формы, которая валидируется;
+// имеет приватные методы, которые обрабатывают форму: проверяют валидность поля, изменяют состояние кнопки сабмита, устанавливают все обработчики;
+// имеет публичный метод enableValidation, который включает валидацию формы.
+// Для каждой проверяемой формы создайте экземпляр класса FormValidator.

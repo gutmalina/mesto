@@ -1,14 +1,13 @@
-import { openPopup, popupImage, imgPopupImage, captionPopupImage } from "./index.js";
-
 export class Card{//хранит разметку карточки и наполняет его уникальным содержанием
-  constructor(link, name, cardSelector){
+  constructor(link, name, cardSelector, handleCardClick){
     this._link = link;
     this._alt = name;
     this._name = name;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
-  _getTemplate() {//функция для возврата разметки карточки
+  _getTemplate() {//ищет шаблон карточки, клонирует и отдает для наполнения данными
     const cardElement = document.querySelector(this._cardSelector)
     .content
     .querySelector('.card')
@@ -16,7 +15,7 @@ export class Card{//хранит разметку карточки и напол
     return cardElement;// вернём DOM-элемент карточки
   }
 
-  generateCard() {//подготовит карточку к публикации. Он добавит данные в разметку
+  generateCard() {//подставляет данные в шаблон карточки и отдает готовую карточку для дальнейшего использования
     this._element = this._getTemplate();// Запишем разметку в приватное поле _element.Так у других элементов появится доступ к ней.
     this._element.querySelector('.card__img').src = this._link;// Добавим данные
     this._element.querySelector('.card__img').alt = this._name
@@ -27,13 +26,13 @@ export class Card{//хранит разметку карточки и напол
   }
 
   _setEventListeners() {
-    this._button.addEventListener('click', () => {
+    this._button.addEventListener('click', () => {//слушатель на лайк
       this._likeCard();
     });
-    this._element.querySelector('.button_type_delete-card').addEventListener('click', () => {this._deleteCard();
+    this._element.querySelector('.button_type_delete-card').addEventListener('click', () => {this._deleteCard();//слушатель удалить карточку
     });
-    this._element.querySelector('.card__img').addEventListener('click', () => {
-      this._handleCardClick();
+    this._element.querySelector('.card__img').addEventListener('click', () => {//слушатель клика по карточке для увеличения
+      this._handleCardClick(this._link, this._name);
     });
   }
 
@@ -45,11 +44,5 @@ export class Card{//хранит разметку карточки и напол
     this._element.remove();
   }
 
-  _handleCardClick(){//открыть попап с увеличенной карточкой
-    openPopup(popupImage);
-    imgPopupImage.src = this._link;
-    captionPopupImage.textContent = this._name;
-    imgPopupImage.alt = this._name;
-  }
-
 }
+

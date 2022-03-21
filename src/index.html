@@ -2,7 +2,6 @@
     <html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="./pages/index.css">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Сервис "Mesto"</title>
@@ -10,11 +9,11 @@
     <body class="body indent">
       <div class="page indent__page">
         <header class="header indent__header">
-          <img class="header__logo" src="./images/header-logo.svg" alt="Логотип сервиса Mesto Russian">
+          <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип сервиса Mesto Russian">
         </header>
         <main class="content indent__content">
           <section class="profile indent__profile">
-            <img class="profile__avatar" src="./images/avatar.jpg" alt="Фотография профиля">
+            <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Фотография профиля">
             <div class="profile__info">
               <h1 class="profile__info-title">Жак-Ив Кусто</h1>
               <p class="profile__info-subtitle">Исследователь океана</p>
@@ -78,9 +77,5 @@
           <button type="button" class="button button_type_delete-card" aria-label="Удалить фотографию"></button>
         </article>
       </template>
-      <script type="module" src="./scripts/index.js"></script>
-      <script type="module" src="./scripts/initialCards.js"></script>
-      <script type="module" src="./scripts/Card.js"></script>
-      <script type="module" src="./scripts/FormValidator.js"></script>
     </body>
     </html>
