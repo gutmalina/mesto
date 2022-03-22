@@ -5,15 +5,15 @@ export class Popup {
 
   open(){
     this._popup.classList.add('popup_opened');//открыть попап
-    document.addEventListener('keydown', (evt) => {this._handleEscClose(evt)});//добавить слушатель Escape
+    document.addEventListener('keydown', this._handleEscClose);//добавить слушатель Escape
    }
 
   close(){
     this._popup.classList.remove('popup_opened');//закрыть попап
-    document.removeEventListener('keydown', (evt) => {this._handleEscClose(evt)});//удалить слушатель Escape
+    document.removeEventListener('keydown', this._handleEscClose);//удалить слушатель Escape
   }
 
-  _handleEscClose(evt){//закрыть попап нажав Escape
+  _handleEscClose = (evt) => {//закрыть попап нажав Escape
     if (evt.key === 'Escape') {
       this.close();
     };
