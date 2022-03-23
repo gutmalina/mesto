@@ -49,12 +49,12 @@ formProfileValidator.enableValidation();
 const formMestoValidator = new FormValidator (mestoForm, objectSelector);//проверка полей формы Место
 formMestoValidator.enableValidation();
 
+const userInfo = new UserInfo(objectUserInfoSelector);
+
 //открыть попап Профиль
 popupProfileOpenButton.addEventListener('click', () =>{//слушатель кнопки редактировать профиль
-  const popup = new Popup(popupProfile);
-  popup.open();
-  const userInfoGet = new UserInfo(objectUserInfoSelector);
-  const objectUserInfo = userInfoGet.getUserInfo();//передача данных от страницы в форму
+  popupProfileSubmit.open();
+  const objectUserInfo = userInfo.getUserInfo();//передача данных от страницы в форму
   nameInput.value = objectUserInfo.nameInfo;
   jobInput.value = objectUserInfo.jobInfo;
   formProfileValidator.removeErrorPopupOpen();//удалить стиль ошибок при открытии попап
@@ -62,29 +62,24 @@ popupProfileOpenButton.addEventListener('click', () =>{//слушатель кн
 
 //открыть попап Место
 popupMestoOpenButton.addEventListener('click', () => {//слушатель кнопки добавить новое место
-  const popup = new Popup(popupMesto);
-  popup.open();
+  popupMestoSubmit.open();
   formMestoValidator.removeErrorPopupOpen();//удалить стиль ошибок при открытии попап
 });
 
-function handleCardClick(link, name){//открывает попап с увеличенной карточкой
-  const popup = new PopupWithImage(popupImage);
-  popup.open(link, name);
+//открыть попап картинка
+function handleCardClick(link, name){
+  popupImageOpenClose.open(link, name);
 }
 
-const popupProfileClose = new Popup(popupProfile);//закрыть форму по оверлею и крестику
-popupProfileClose.setEventListeners();
+const popupImageOpenClose = new PopupWithImage(popupImage);//закрыть форму по оверлею и крестику
+popupImageOpenClose.setEventListeners();
 
 //Submit формы Профиль
 const popupProfileSubmit = new PopupWithForm( popupProfile,
   (objectUserInput) => {
-  const userInfoSet = new UserInfo(objectUserInfoSelector);//передача новых данных из формы на страницу
-  userInfoSet.setUserInfo(objectUserInput);
+  userInfo.setUserInfo(objectUserInput);//передача новых данных из формы на страницу
   });
 popupProfileSubmit.setEventListeners();
-
-const popupMestoClose = new Popup(popupMesto);//закрыть форму по оверлею и крестику
-popupMestoClose.setEventListeners();
 
 //Submit формы Место
 const popupMestoSubmit = new PopupWithForm( popupMesto,
@@ -94,5 +89,4 @@ const popupMestoSubmit = new PopupWithForm( popupMesto,
   });
 popupMestoSubmit.setEventListeners();
 
-const popupImageCloseOverley = new Popup(popupImage);//закрыть форму по оверлею и крестику
-popupImageCloseOverley.setEventListeners();
+
