@@ -49,7 +49,7 @@
 @import url(../blocks/popup/__image-container/popup__image-container.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__image-caption/popup__image-caption.css);
-@import url(../blocks/button/__avatar/button__avatar.css);
+@import url(../blocks/button/_avatar/button_avatar.css);
 @import url(../blocks/button/_style/button_style_save-avatar.css);
 @import url(../blocks/popup/__title/_delete/popup__title_delete.css);
 @import url(../blocks/button/_style/button_style_delete.css);
