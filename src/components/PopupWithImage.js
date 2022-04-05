@@ -7,6 +7,7 @@ export class PopupWithImage extends Popup{
      this._caption = document.querySelector('.popup__image-caption');
   }
 
+  //открыть попап с увеличенной карточкой
   open(link, name){
     super.open()
     this._image.src = link;

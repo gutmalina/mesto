@@ -9,12 +9,14 @@ export class FormValidator{
     this._inputs = this._form.querySelectorAll(this._inputSelector);
   }
 
-  enableValidation(){//запуск функции Валидности input + button
+  //запуск функции Валидности input + button
+  enableValidation(){
     this._button = this._form.querySelector(this._buttonSubmitSelector);
     this._setEventListeners();
   }
 
-  _setEventListeners() {//проверка Валидности input и функции изменении disabled button
+  //проверка Валидности input и функции изменении disabled button
+  _setEventListeners() {
     this._toggleButtonState();
     this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
@@ -26,6 +28,7 @@ export class FormValidator{
     });
   }
 
+  //проверка Валидности полей, показать или удалить стиль ошибки
   _checkInputValidity(){//проверка Валидности полей, показать или удалить стиль ошибки
     if(this._input.validity.valid){
       this._hideInputError();
@@ -34,19 +37,22 @@ export class FormValidator{
     };
   }
 
+  //удалить стиль ошибки
   _hideInputError(){//удалить стиль ошибки
     this._input.classList.remove(this._inputErrorClass);
     this._span.classList.remove(this._spanErrorClass);
     this._span.textContent = '';
   }
 
+  //показать стиль ошибки
   _showInputError() {//показать стиль ошибки
     this._input.classList.add(this._inputErrorClass);
     this._span.classList.add(this._spanErrorClass);
     this._span.textContent = this._input.validationMessage;
   }
 
-  _toggleButtonState() {//изменении disabled button
+  //изменении disabled button
+  _toggleButtonState() {
     if(this._form.checkValidity()){
       this._button.removeAttribute('disabled', '');
       this._button.classList.remove(this._buttonDisabledClass)
@@ -55,12 +61,14 @@ export class FormValidator{
     };
   }
 
+  //disabled кнопки
   addButtonState() {
     this._button.setAttribute('disabled', '');
     this._button.classList.add(this._buttonDisabledClass);
   }
 
-  removeErrorPopupOpen(){//удалить ошибки при открытии попап Профиль
+  //удалить ошибки при открытии попап Профиль
+  removeErrorPopupOpen(){
     this._inputs.forEach((input) => {
       this._input = input;
       this._span = this._form.querySelector(`.span_${this._input.id}`);
@@ -69,10 +77,3 @@ export class FormValidator{
   }
 
 };
-
-//Создайте класс FormValidator, который настраивает валидацию полей формы:
-// принимает в конструктор объект настроек с селекторами и классами формы;
-// принимает вторым параметром элемент той формы, которая валидируется;
-// имеет приватные методы, которые обрабатывают форму: проверяют валидность поля, изменяют состояние кнопки сабмита, устанавливают все обработчики;
-// имеет публичный метод enableValidation, который включает валидацию формы.
-// Для каждой проверяемой формы создайте экземпляр класса FormValidator.

@@ -5,13 +5,15 @@ export class Section{
     this._container = document.querySelector(containerSelector);
   }
 
-  renderItems(){//перебирает массив данных и отвечает за отрисовку всех элементов. Отрисовка каждого отдельного элемента должна осуществляться функцией renderer
+  //перебирает массив данных и отрисовывает карточку
+  renderItems(){
     this._itemsArray.forEach((item) => {
       this._renderer(item);
     })
   }
 
-  addItem(item){//принимает DOM-элемент и добавляет его в контейнер
+  //принимает DOM-элемент и добавляет его в контейнер
+  addItem(item){
     this._container.prepend(item);
   }
 

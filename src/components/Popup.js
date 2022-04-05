@@ -3,23 +3,27 @@ export class Popup {
     this._popup = popupSelector;
   }
 
+  //открыть попап + слушатель ESC
   open(){
-    this._popup.classList.add('popup_opened');//открыть попап
-    document.addEventListener('keydown', this._handleEscClose);//добавить слушатель Escape
+    this._popup.classList.add('popup_opened');
+    document.addEventListener('keydown', this._handleEscClose);
    }
 
+  //закрыть попап + снять слушатель ESC
   close(){
-    this._popup.classList.remove('popup_opened');//закрыть попап
-    document.removeEventListener('keydown', this._handleEscClose);//удалить слушатель Escape
+    this._popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
-  _handleEscClose = (evt) => {//закрыть попап нажав Escape
+  //закрыть попап при нажатии ESC
+  _handleEscClose = (evt) => {
     if (evt.key === 'Escape') {
       this.close();
     };
   }
 
-  setEventListeners(){//закрыть попап кликом по оверлей и по крестику
+  //закрыть попап кликом по оверлей и по крестику
+  setEventListeners(){
     this._popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('popup_opened')
           || evt.target.classList.contains('popup__close')) {
