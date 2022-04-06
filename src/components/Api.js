@@ -3,13 +3,22 @@ export class Api {
     this._headers = headers;
     this._baseUrl =baseUrl;
   }
+
+  //проверить ответ
+  _checkResponse(res){
+    if(res.ok){
+      return res.json()
+    }else{
+      return Promise.reject(res.status)
+    }
+  }
+
 //получить данные профиля с сервера
   getProfile(){
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+    .then(this._checkResponse)
   }
 
 //получить предзагруженные карточки с сервера
@@ -17,8 +26,7 @@ export class Api {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+    .then(this._checkResponse)
   }
 
 //отправить на сервер новые данные профиля
@@ -31,8 +39,7 @@ export class Api {
         about
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+    .then(this._checkResponse)
   }
 
 //добавить новую карточку на сервер
@@ -46,8 +53,7 @@ export class Api {
         likes
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+    .then(this._checkResponse)
   }
 
 //удалить карточку на сервере
@@ -56,8 +62,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+    .then(this._checkResponse)
   }
 
   //добавить like
@@ -66,8 +71,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+    .then(this._checkResponse)
   }
 
   //удалить like
@@ -76,8 +80,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+    .then(this._checkResponse)
   }
 
   //отправить на сервер новые данные аватар
@@ -89,8 +92,7 @@ export class Api {
         avatar
       })
     })
-    .then(res => res.ok ? res.json() : Promise.reject(res.status))
-    .catch(console.log)
+    .then(this._checkResponse)
   }
 
 }

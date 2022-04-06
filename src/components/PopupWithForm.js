@@ -23,15 +23,13 @@ export class PopupWithForm extends Popup{
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault(evt);
-      this._renderLoading(true);
+      this.renderLoading(true);
       this._handleSubmit(this._getInputValues());
-      this._renderLoading(false);
-      this.close();
     });
   }
 
   //изменение текста кнопки при ожидании ответа от сервера
-  _renderLoading(isLoading){
+  renderLoading(isLoading){
     if(isLoading){
       this._button.textContent = 'Сохранение...';
     }else{
@@ -43,10 +41,10 @@ export class PopupWithForm extends Popup{
     }
   }
 
-  //закрыть попап
+  //закрыть попап, очистить поля формы
   close(){
     super.close()
-    this._form.reset();//очищает поля формы после закрытия
+    this._form.reset();
   }
 
 }

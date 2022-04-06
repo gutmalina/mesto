@@ -10,6 +10,7 @@
 @import url(../blocks/indent/__content/indent__content.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/indent/__profile/indent__profile.css);
+@import url(../blocks/button/_avatar/button_avatar.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__info-title/profile__info-title.css);
@@ -49,7 +50,6 @@
 @import url(../blocks/popup/__image-container/popup__image-container.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__image-caption/popup__image-caption.css);
-@import url(../blocks/button/_avatar/button_avatar.css);
 @import url(../blocks/button/_style/button_style_save-avatar.css);
 @import url(../blocks/popup/__title/_delete/popup__title_delete.css);
 @import url(../blocks/button/_style/button_style_delete.css);

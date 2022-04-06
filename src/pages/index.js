@@ -3,45 +3,11 @@ import { Api } from '../components/Api.js';
 import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
 import { FormValidator } from '../components/FormValidator.js';
-import { Popup } from '../components/Popup.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { UserInfo } from '../components/UserInfo.js';
-
-//объект для создания карточек
-export const objectSelector = {
-  formSelector: '.form',
-  inputSelector: '.popup__input',
-  inputErrorClass: 'popup__input_type_error',
-  spanErrorClass: 'span_active',
-  buttonSubmitSelector: '.button-submit',
-  buttonDisabledClass: 'button_style_save-invalid',
-};
-//объект с данными профиля со страницы
-export const objectUserInfoSelector = {
-  nameInfoSelector: '.profile__info-title',
-  jobInfoSelector: '.profile__info-subtitle',
-  avatarInfoSelector: '.profile__avatar',
-}
-
-//попапы
-const popupProfile = document.querySelector('.popup_type_profile');
-const popupMesto = document.querySelector('.popup_type_mesto');
-const popupImage = document.querySelector('.popup_type_image');
-const popupAvatar = document.querySelector('.popup_type_avatar');
-const popupDelete = document.querySelector('.popup_type_delete');
-//формы
-const profileForm = document.querySelector('.form_profile');
-const mestoForm = document.querySelector('.form_mesto');
-const avatarForm = document.querySelector('.form_avatar');
-//кнопки
-const popupProfileOpenButton = document.querySelector('.button_type_edit-profile');
-const popupMestoOpenButton = document.querySelector('.button_type_add-profile');
-const popupAvatarOpenButton = document.querySelector('.button_type_avatar-profile');
-//поля с данными профиля из попап Профиль
-const nameInput = profileForm.querySelector('.popup__input_edit_name');
-const jobInput = profileForm.querySelector('.popup__input_edit_job');
+import { objectSelector, objectUserInfoSelector, popupProfile, popupMesto, popupImage, popupAvatar, popupDelete, profileForm, mestoForm, avatarForm, popupProfileOpenButton, popupMestoOpenButton, popupAvatarOpenButton, nameInput, jobInput } from '../utils/constants.js';
 
 //класс FormValidator
 const formProfileValidator = new FormValidator (profileForm, objectSelector);
@@ -54,27 +20,51 @@ const popupProfileWithForm = new PopupWithForm( popupProfile,
     api.editProfile(objectUserInput.name, objectUserInput.job)//передает новые данные профиля на сервер
       .then(res => {
       userInfo.setUserInfo(objectUserInput.name, objectUserInput.job);
+      popupProfileWithForm.close();
+      formProfileValidator.addButtonState();//сделать кнопку не активной
     })
+      .catch(console.log)
+      .finally(() => {
+        popupProfileWithForm.renderLoading(false)
+      })
 });
 const popupMestoWithForm = new PopupWithForm( popupMesto,
   (objectUserInput) => {
     api.addCard(objectUserInput.name, objectUserInput.link)//передает новую карточку на сервер
       .then(res => {
       renderer(res, userId);
+      popupMestoWithForm.close();
+      formMestoValidator.addButtonState();//сделать кнопку не активной
       })
-    formMestoValidator.addButtonState();//сделать кнопку не активной
+      .catch(console.log)
+      .finally(() => {
+        popupMestoWithForm.renderLoading(false)
+      })
   });
 const popupAvatarWithForm = new PopupWithForm( popupAvatar,
   (objectUserInput) => {
     api.editAvatar(objectUserInput.link)//передает новую карточку на сервер
       .then(res => {
       userInfo.setUserAvatar(res.avatar);//устанавливает аватар на страницу
+      popupAvatarWithForm.close();
+      formAvatarValidator.addButtonState();//сделать кнопку не активной
       })
-    formAvatarValidator.addButtonState();//сделать кнопку не активной
+      .catch(console.log)
+      .finally(() => {
+        popupAvatarWithForm.renderLoading(false)
+      })
   });
-const popupWithConfirmation = new PopupWithConfirmation(popupDelete, (id) => {
+const popupWithConfirmation = new PopupWithConfirmation(popupDelete,
+  (id) => {
     api.deleteCard(id)
-      .then(res => {})
+      .then(res => {
+        popupWithConfirmation.deleteCard();
+        popupWithConfirmation.close();
+      })
+      .catch(console.log)
+      .finally(() => {
+        popupWithConfirmation.renderLoading(false)
+      })
 });
 
 //класс PopupWithImage
@@ -93,20 +83,19 @@ const api = new Api({
   }
 });
 
-//Сервер, получить данные профиля
-api.getProfile()
-  .then(res => {
+//Загрузка страницы, получение данных профиля и массив карточек
+Promise.all([api.getProfile(), api.getCards()])
+  .then(([res, cardList]) => {
     userInfo.setUserInfo(res.name, res.about);
     userId = res._id;
     userInfo.setUserAvatar(res.avatar)
-  });
-//Сервер, получить данные карточек
-api.getCards()
-  .then(cardList => {
     userId = userId;
     cardList.forEach(item => {
       renderer(item, userId);
     })
+  })
+  .catch(err => {
+    console.log(err)
   });
 
 //присвоить значение id пользователя при получении ответа от сервера
@@ -122,20 +111,21 @@ const renderer = (item, userId) => {
       popupWithImage.open(link, name);
     },
     (id, element) => {//открыть попап для удаления карточки
-      popupWithConfirmation.open();
-      popupWithConfirmation.setEventListeners(id, element);
+      popupWithConfirmation.open(id, element);
     },
     (id) => {//установить-удалить лайк
       if(card.isLiked()){
         api.deleteLike(id)
           .then(res => {
             card.setLikes(res.likes);
-        });
+        })
+          .catch(console.log);
       }else {
         api.addLike(id)
           .then(res => {
             card.setLikes(res.likes);
-          });
+          })
+          .catch(console.log);
         };
     }
   );
@@ -159,8 +149,7 @@ popupMestoOpenButton.addEventListener('click', () => {
   formMestoValidator.removeErrorPopupOpen();
 });
 popupAvatarOpenButton.addEventListener('click', () => {
-  const popupAvatarOpen = new Popup(popupAvatar);
-  popupAvatarOpen.open();
+  popupAvatarWithForm.open();
   formAvatarValidator.removeErrorPopupOpen();
 });
 
@@ -173,6 +162,7 @@ formAvatarValidator.enableValidation();
 popupProfileWithForm.setEventListeners();
 popupMestoWithForm.setEventListeners();
 popupAvatarWithForm.setEventListeners();
+popupWithConfirmation.setEventListeners();
 
 //вызов Close формы по оверлею и крестику
 popupWithImage.setEventListeners();

@@ -42,12 +42,10 @@ export class Card{//хранит разметку карточки и напол
     this._button.addEventListener('click', () => {
       this._handleLikeClick(this._id)
     });
-
     //слушатель открыть попап для удаления карточки
     this._delete.addEventListener('click', () => {
       this._openPopupDeleteCard(this._id, this._element);
     });
-
     //слушатель клика по карточке для увеличения
     this._element.querySelector('.card__img').addEventListener('click', () => {
       this._handleCardClick(this._link, this._name);
